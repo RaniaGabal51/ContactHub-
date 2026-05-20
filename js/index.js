@@ -1,15 +1,17 @@
 // ----------------------------------// Variables //-----------------------------//
 
-inputFullName = document.getElementById("contactName");
-inputPhoneNumber = document.getElementById("contactPhone");
-inputEmailAddress = document.getElementById("contactEmail");
-inputAddress = document.getElementById("contactAddress");
-inputGroup = document.getElementById("contactGroup");
-inputNotes = document.getElementById("contactNotes");
-contactFav = document.getElementById("contactFavorite");
-contactEmergency = document.getElementById("contactEmergency");
-addBtn = document.getElementById("saveContactBtn");
-contactsList = document.getElementById("contactsList");
+var inputFullName = document.getElementById("contactName");
+var inputPhoneNumber = document.getElementById("contactPhone");
+var inputEmailAddress = document.getElementById("contactEmail");
+var inputAddress = document.getElementById("contactAddress");
+var inputGroup = document.getElementById("contactGroup");
+var inputNotes = document.getElementById("contactNotes");
+var contactFav = document.getElementById("contactFavorite");
+var contactEmergency = document.getElementById("contactEmergency");
+var avatarInput = document.getElementById("avatarInput");
+var avatarPreview = document.getElementById("avatarPreview");
+var addBtn = document.getElementById("saveContactBtn");
+var contactsList = document.getElementById("contactsList");
 var searchInput = document.getElementById("search");
 var addModalLabel = document.getElementById("addModalLabel");
 var editModalLabel = document.getElementById("editModalLabel");
@@ -20,6 +22,8 @@ var favoriteContacts = document.getElementById("favoriteContacts");
 var emergencyContacts = document.getElementById("emergencyContacts");
 var favoriteContactsList = document.getElementById("favoriteContactsList");
 var emergencyContactsList = document.getElementById("emergencyContactsList");
+
+var currentAvatar = "";
 
 var contactList = [];
 var isUpdate = false;
@@ -51,6 +55,14 @@ exampleModal.addEventListener("hidden.bs.modal", function () {
   editModalLabel.classList.add("d-none");
 
   clearForm();
+});
+
+avatarInput.addEventListener("change", function () {
+  var fileName = avatarInput.files[0].name;
+  currentAvatar = "./images/" + fileName;
+  avatarPreview.innerHTML = `
+    <img src="${currentAvatar}" class="w-100 h-100 rounded-circle object-fit-cover">
+  `;
 });
 
 inputFullName.addEventListener("input", function () {
@@ -89,6 +101,7 @@ function addContact() {
       notes: inputNotes.value,
       favorite: contactFav.checked,
       emergency: contactEmergency.checked,
+      avatar: currentAvatar,
     };
 
     for (var i = 0; i < contactList.length; i++) {
@@ -135,6 +148,10 @@ function clearForm() {
   inputNotes.value = "";
   contactFav.checked = false;
   contactEmergency.checked = false;
+  currentAvatar = "";
+  avatarInput.value = "";
+
+  avatarPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
 
   var inputs = [inputFullName, inputPhoneNumber, inputEmailAddress];
 
@@ -183,7 +200,11 @@ function displayContacts(array) {
                            style="background-image:${avatarColor(array[i].name)}"
                         >
                         <div class="${array[i].favorite ? "fav-icon" : ""} ${array[i].emergency ? "emerg-icon" : ""}"></div>
-                          <span>${getInitials(array[i].name)}</span>
+                          ${
+                            array[i].avatar
+                              ? `<img src="${array[i].avatar}" class="w-100 h-100 rounded">`
+                              : `<span>${getInitials(array[i].name)}</span>`
+                          }
                         </div>
 
                         <div>
@@ -235,7 +256,7 @@ function displayContacts(array) {
                         <div class="group ${array[i].group != "" ? "d-flex" : "d-none"} ${array[i].group}">
                           <span>${array[i].group}</span>
                         </div>
-                        <div class="group emerg ${array[i].emergency != "" ? "d-flex" : "d-none"} align-items-center gap-1">
+                        <div class="group emerg ${array[i].emergency ? "d-flex" : "d-none"} align-items-center gap-1">
                           <span><i class="fa-solid fa-heart-pulse"></i> Emergency</span>
                         </div>
                       </div>
@@ -312,12 +333,12 @@ function displayfavCard(array) {
             class="contact-card d-flex justify-content-between align-items-center"
           >
             <div class="d-flex align-items-center gap-2">
-              <div
-                class="avatar-box d-flex justify-content-center align-items-center"
-                style="background-image:${avatarColor(array[i].name)}"
-              >
-                ${getInitials(array[i].name)}
-              </div>
+            <div
+              class="avatar-box d-flex justify-content-center align-items-center"
+              style="background-image:${array[i].avatar ? "none" : avatarColor(array[i].name)}"
+            >
+              ${array[i].avatar ? `<img src="${array[i].avatar}" class="w-100 h-100 rounded object-fit-cover">` : getInitials(array[i].name)}
+            </div>
 
               <div class="contact-info">
                 <h5>${array[i].name}</h5>
@@ -359,12 +380,11 @@ function displayEmergyCard(array) {
             class="contact-card d-flex justify-content-between align-items-center"
           >
             <div class="d-flex align-items-center gap-2">
-              <div
-                class="avatar-box d-flex justify-content-center align-items-center"
-                style="background-image:${avatarColor(array[i].name)}"
-              >
-                ${getInitials(array[i].name)}
-              </div>
+            <div
+              class="avatar-box d-flex justify-content-center align-items-center"
+              style="background-image:${array[i].avatar ? "none" : avatarColor(array[i].name)}">
+              ${array[i].avatar ? `<img src="${array[i].avatar}" class="w-100 h-100 rounded object-fit-cover">` : getInitials(array[i].name)}
+            </div>
 
               <div class="contact-info">
                 <h5>${array[i].name}</h5>
@@ -487,6 +507,15 @@ function setDataToInputs(updatindex) {
   inputNotes.value = contactList[updatindex].notes;
   contactFav.checked = contactList[updatindex].favorite;
   contactEmergency.checked = contactList[updatindex].emergency;
+  currentAvatar = contactList[updatindex].avatar || "";
+
+  if (currentAvatar != "") {
+    avatarPreview.innerHTML = `
+    <img src="${currentAvatar}" class="w-100 h-100 rounded-circle object-fit-cover">
+  `;
+  } else {
+    avatarPreview.innerHTML = `<i class="fa-solid fa-user"></i>`;
+  }
 
   var modal = bootstrap.Modal.getOrCreateInstance(exampleModal);
   modal.show();
@@ -520,6 +549,7 @@ function updateContact() {
     contactList[currentIndex].notes = inputNotes.value;
     contactList[currentIndex].favorite = contactFav.checked;
     contactList[currentIndex].emergency = contactEmergency.checked;
+    contactList[currentIndex].avatar = currentAvatar;
 
     localStorage.setItem("contacArray", JSON.stringify(contactList));
 
