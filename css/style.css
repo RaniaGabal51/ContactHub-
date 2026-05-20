@@ -1,0 +1,613 @@
+:root {
+  --main-color: #7f22fe;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-bottom: 0;
+}
+
+nav {
+  padding: 16px 32px;
+  background-color: #fdfdfe;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+nav .logo {
+  width: 44px;
+  height: 44px;
+  background-image: linear-gradient(to bottom right, #7728fc, #4f46e5);
+  border-radius: 10px;
+  box-shadow: 5px 4px 10px 5px #edebeb;
+}
+
+nav h1 span {
+  color: var(--main-color);
+}
+
+.logo-title p {
+  font-size: 12px;
+  color: #727a89;
+}
+
+nav .navbar-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+}
+
+nav .add-contact {
+  background-image: linear-gradient(to bottom right, #7728fc, #4f46e5);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  transition: all 0.5s;
+}
+
+nav .add-contact:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 1px 3px 9px #cec1c1;
+}
+
+nav .icon {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+nav .icon:hover {
+  background-color: #f3f4f6;
+  color: #000 !important;
+}
+
+main {
+  margin-top: 85px;
+  padding-top: 32px;
+}
+
+.quick-stats {
+  margin-bottom: 32px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 6px 4px 10px #eee;
+  border: none;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.icon-box {
+  height: 48px;
+  width: 48px;
+  background-image: linear-gradient(to bottom right, #2779ff, #1a66fe);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 2px 3px 5px #c2d6ff;
+}
+
+.icon-box.emergency {
+  background-image: linear-gradient(to bottom right, #fc1b4f, #ed0025);
+  box-shadow: 2px 3px 5px #ffd9e2;
+}
+
+.icon-box.favorites {
+  background-image: linear-gradient(to bottom right, #ffad00, #ff8200);
+  box-shadow: 2px 3px 5px #fff1db;
+}
+
+.card .card-content p {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.contact-header h2 {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 4px;
+}
+
+.contacts-search {
+  margin-top: 20px;
+  position: relative;
+}
+
+.contacts-search input {
+  padding: 14px 16px 14px 44px;
+  border-radius: 15px;
+}
+.contacts-search .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: #99a1af;
+}
+
+.contacts-search input::placeholder {
+  color: #99a1af;
+  font-size: 14px;
+}
+
+.form-control:focus,
+.custom-input:focus {
+  border-color: #7c3aed;
+  background: #fff;
+  box-shadow: 0 0 0 2px #e8dcff !important;
+}
+
+.contact-section .avatar-box {
+  height: 56px;
+  width: 56px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+}
+
+.contact-section .fav-icon::after {
+  content: "\f005";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #ffb900;
+  color: #fff;
+  border: 2px solid #fff;
+  top: -8px;
+  right: -8px;
+  font-size: 8px;
+}
+
+.contact-section .emerg-icon::before {
+  content: "\f21e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #ff2056;
+  color: #fff;
+  border: 2px solid #fff;
+  bottom: -8px;
+  right: -8px;
+  font-size: 8px;
+}
+
+.contact-section .card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact-section .box-body {
+  padding: 16px 16px 12px;
+  flex: 1;
+}
+
+.contact-section .box-footer {
+  padding: 10px 16px;
+  background-color: #fafbfc;
+}
+
+.contact-section .phone-icon,
+.box-details .info-icon {
+  height: 24px;
+  width: 24px;
+  background-color: #dbeafe;
+  color: #155dfc;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.box-details .info-icon.email,
+.box-footer .btn.email {
+  background-color: #ede9fe;
+  color: #7f22fe;
+}
+
+.box-details .info-icon.location,
+.box-footer .btn.location,
+.category-body.fav .col-12 .call,
+.box-body .group.friends {
+  background-color: #d0fae5;
+  color: #009966;
+}
+
+.box-body .group {
+  margin-top: 12px;
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 8px;
+  width: fit-content;
+  background-color: #dbeafe;
+  color: #155dfc;
+}
+
+.box-body .group.work {
+  background-color: #f3e8ff;
+  color: #7728fc;
+}
+
+.box-body .group.other {
+  background-color: #f3f4f6;
+  color: #333;
+}
+
+.box-body .group.emerg {
+  background-color: #fff1f2;
+  color: #ed005c;
+}
+
+.box-footer .btn,
+.box-footer .action {
+  height: 36px;
+  width: 36px;
+  transition: all 0.3s;
+}
+
+.box-footer .btn.location:hover {
+  background-color: #bff7db;
+}
+
+.box-footer .btn.email:hover,
+.box-body .group.school,
+.box-footer .action.star.active {
+  background-color: #fef3c6;
+  color: #ffb900;
+}
+
+.box-footer .action {
+  color: #727a89;
+  border-radius: 6px;
+}
+
+.box-footer .action:hover {
+  background-color: #f3f4f6;
+}
+
+.box-footer .action.star:hover {
+  color: #ffb900;
+}
+.box-footer .action.heart:hover,
+.box-footer .action.delete:hover,
+.category-body .call,
+.box-footer .action.heart.active {
+  color: red;
+  background-color: #ffe4e6;
+}
+
+.box-footer .action.edit:hover {
+  color: #4f39f6;
+  background-color: #eef2ff;
+}
+.box-footer .action.delete:hover {
+  background-color: #fff1f2;
+}
+
+.contact-category .category-header {
+  padding: 16px 20px;
+}
+.contact-category .category-body {
+  padding: 12px;
+  background-color: #fff;
+}
+.contact-category .category-body p {
+  padding: 32px;
+  color: #99a1af;
+}
+
+.contact-category {
+  border-radius: 20px;
+  box-shadow: 6px 4px 10px #eee;
+  overflow: hidden;
+}
+
+.contact-category.favorite {
+  margin-bottom: 20px;
+}
+
+.contact-category.favorite .category-header {
+  background-color: #fff8ed;
+}
+.contact-category.emergency .category-header {
+  background-color: #fef2f2;
+}
+
+.contact-category .icon-box {
+  height: 36px;
+  width: 36px;
+}
+
+.contact-category .category-header p {
+  font-size: 11px;
+}
+
+.category-body .avatar-box {
+  height: 40px;
+  width: 40px;
+}
+
+.contact-info h5 {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.contact-info span {
+  font-size: 10px;
+  color: #99a1af;
+}
+
+.category-body .call {
+  height: 32px;
+  width: 32px;
+  font-size: 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.category-body .col-12 {
+  background-color: #f8fafc;
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.category-body .col-12:hover {
+  background-color: #fff1f2;
+}
+
+.category-body.fav .col-12:hover {
+  background-color: #fffbeb;
+}
+
+.category-body .col-12:hover .call {
+  color: #fff;
+  background-color: #ff2056;
+}
+
+.category-body.fav .col-12:hover .call {
+  background-color: #00bc7d;
+}
+
+.modal {
+  background: rgb(255 255 255 / 27%);
+  backdrop-filter: blur(3px);
+}
+
+.modal-header {
+  padding: 16px 24px;
+}
+
+.modal-header .btn-close {
+  font-size: 11px;
+}
+
+.modal-header .btn-close:hover {
+  background-color: #f3f4f6;
+  color: #4a5565;
+}
+
+.modal-footer {
+  border-top: none;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.scrollbar {
+  height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal-footer button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.modal-footer button.cancel {
+  background-color: #f9fafb;
+}
+
+.modal-footer button.save {
+  background-image: linear-gradient(to bottom right, #7c26fd, #4f46e5);
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.modal-footer button.save:hover {
+  transform: translateY(-1px);
+  box-shadow: 1px 3px 4px #cec1c1;
+}
+
+.modal-footer button.cancel:hover {
+  background-color: #e5e7eb;
+}
+
+.avatar-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-image: linear-gradient(to bottom right, #60a5fa, #2563eb);
+  font-size: 32px;
+}
+
+.upload-btn {
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.3s;
+}
+
+.upload-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  margin-bottom: 8px;
+}
+
+.custom-input {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: 0.3s;
+  box-shadow: none !important;
+}
+
+.custom-select {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+.form-field p {
+  color: #ff2056;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.custom-check .form-check-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid #4f4f4f;
+}
+
+.custom-check .form-check-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-check-input:checked {
+  background-color: #c51f27;
+  border-color: #c51f27;
+}
+
+.custom-check:hover .form-check-label {
+  color: #000;
+}
+.custom-check:hover .form-check-input:checked {
+  background-color: #9d2027;
+  border-color: #9d2027;
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+.no-contact div {
+  height: 80px;
+  width: 80px;
+  background-color: #f3f4f6;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.no-contact div i {
+  font-size: 30px;
+  color: #d1d5dc;
+}
+
+.form-control.is-invalid {
+  background-image: none;
+}
+
+.position-sticky{
+  top: 100px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 12px 10px;
+  }
+
+  nav .logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  nav h1 {
+    font-size: 18px !important;
+  }
+
+  nav .add-contact {
+    padding: 8px 10px;
+  }
+
+  .modal-footer,
+  .check {
+    flex-wrap: wrap;
+  }
+}
